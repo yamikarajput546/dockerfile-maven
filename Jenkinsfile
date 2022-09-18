@@ -3,6 +3,7 @@ pipeline {
     tools { 
         maven 'maven' 
         jdk 'jdk8' 
+        docker 'docker'
     }
 
     environment {
@@ -10,15 +11,7 @@ pipeline {
     }
     stages {
 
-        stage ('Initialize'){
-            steps {
-                def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-
-            }
-        
-        }
-        
+               
         stage ('Clean') {
             steps {
                 echo 'mvn clean '
