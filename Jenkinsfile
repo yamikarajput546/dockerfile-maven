@@ -1,42 +1,52 @@
-node { // node/agent
-  stage ('Clean') {
-              echo 'mvn clean '
-              sh 'mvn clean'
+pipeline {
+    agent any
+    tools { 
+        maven 'maven' 
+        jdk 'jdk8' 
+    }
+
+    environment {
+        dockerhub =  credentials('dockerhub')
+    }
+    stages {
+
+               
+        stage ('Clean') {
+            steps {
+                echo 'mvn clean '
+                sh 'mvn clean'
+            }
         }
-    stage ('Build') {
-              echo 'mvn clean '
-              sh 'mvn clean'
+         stage ('Build') {
+            steps {
+                echo 'mvn compile '
+                sh 'mvn compile'
+            }
         }
 
-         stage ('Compile') {
-              echo 'mvn compile '
-              sh 'mvn compile'
+         stage ('Package') {
+            steps {
+                echo 'mvn package '
+                sh 'mvn package'
+            }
         }
-          stage ('Package') {
-              echo 'mvn package '
-              sh 'mvn package'
-        }
-
 
         stage ('Building docker image'){
-            
-                sh 'docker build -t mvn:02 .'
-            
+            steps{
+                sh 'docker build -t mvn:01 .'
+            }
         }
         
         stage ('Pushing to the docker hub')
         {
-            try {
-                sh 'docker tag mvn:02 yamikarajputd/mvn:02'
-             //   sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
-                sh 'docker push yamikarajputd/mvn:02'
-                }
-           catch (exc) {
-            echo 'Something failed! check the try block hi '
-            
+            steps{
+                sh 'docker tag mvn:01 yamikarajputd/mvn:01'
+                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+                sh 'docker push yamikarajputd/mvn:01'
+            }
         }
-            
 
-      }
-        
+
+
+    }
 }
