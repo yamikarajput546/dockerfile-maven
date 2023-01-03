@@ -28,7 +28,7 @@ node { // node/agent
         {
             
                 sh 'docker tag mvn:02 yamikarajputd/mvn:02'
-                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password $dockerhub_PSW'
+                sh 'echo $dockerhub_PSW | winpty docker login -u $dockerhub_USR --password-stdin'
                 sh 'docker push yamikarajputd/mvn:02'
             }
         
