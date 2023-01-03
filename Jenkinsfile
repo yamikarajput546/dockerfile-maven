@@ -31,12 +31,12 @@ node { // node/agent
                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
                 sh 'docker push yamikarajputd/mvn:02'
                 }
-            catch (exc) {
-                echo 'Something didn't work and got some exceptions'
+           catch (exc) {
+            echo 'Something failed, I should sound the klaxons!'
             throw
-            }
+        }
             
 
-            }
+      }
         
 }
