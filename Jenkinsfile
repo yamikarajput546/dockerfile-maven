@@ -6,5 +6,4 @@ node { // node/agent
               echo 'mvn clean '
               sh 'mvn clean'
         }
-   }
 }
