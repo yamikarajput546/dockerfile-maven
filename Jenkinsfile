@@ -20,16 +20,16 @@ node { // node/agent
 
         stage ('Building docker image'){
             
-                sh 'docker build -t mvn:01 .'
+                sh 'docker build -t mvn:02 .'
             
         }
         
         stage ('Pushing to the docker hub')
         {
             
-                sh 'docker tag mvn:01 yamikarajputd/mvn:01'
-                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
-                sh 'docker push yamikarajputd/mvn:01'
+                sh 'docker tag mvn:02 yamikarajputd/mvn:02'
+                sh 'docker login -u $dockerhub_USR -p  $dockerhub_PSW'
+                sh 'docker push yamikarajputd/mvn:02'
             }
         
 }
