@@ -32,7 +32,7 @@ node { // node/agent
                 sh 'docker push yamikarajputd/mvn:02'
                 }
            catch (exc) {
-            echo 'Something failed, I should sound the klaxons!'
+            echo 'Something failed'
             
         }
             
