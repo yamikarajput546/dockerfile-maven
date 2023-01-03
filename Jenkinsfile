@@ -8,9 +8,7 @@ node {
     environment {
         dockerhub =  credentials('dockerhub')
     }
-    stages {
-
-               
+          
         stage ('Clean') {
             steps {
                 echo 'mvn clean '
@@ -42,8 +40,4 @@ node {
                 sh 'docker push yamikarajputd/mvn:01'
             }
         }
-
-
-
-    }
 }
