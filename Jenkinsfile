@@ -8,7 +8,7 @@ node { // node/agent
               sh 'mvn clean'
         }
 
-         stage ('Clean') {
+         stage ('Compile') {
               echo 'mvn compile '
               sh 'mvn compile'
         }
