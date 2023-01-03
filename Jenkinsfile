@@ -26,7 +26,7 @@ pipeline {
 
          stage ('Package') {
             steps {
-                echo 'mvn package hello'
+                echo 'mvn package'
                 sh 'mvn package'
             }
         }
