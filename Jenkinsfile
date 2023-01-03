@@ -26,10 +26,17 @@ node { // node/agent
         
         stage ('Pushing to the docker hub')
         {
-            
+            try {
                 sh 'docker tag mvn:02 yamikarajputd/mvn:02'
                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
                 sh 'docker push yamikarajputd/mvn:02'
+                }
+            catch (exc) {
+                echo 'Something didn't work and got some exceptions'
+            throw
+            }
+            
+
             }
         
 }
