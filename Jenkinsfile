@@ -13,7 +13,7 @@ pipeline {
                
         stage ('Clean') {
             steps {
-                echo 'mvn clean '
+                echo 'maven clean '
                 sh 'mvn clean'
             }
         }
